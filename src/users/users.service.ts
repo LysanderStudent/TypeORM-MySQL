@@ -26,7 +26,6 @@ export class UsersService {
     async getUser(id: number) {
         const userExists = await this.userRepository.findOne({ where: { id } });
 
-        console.log(userExists);
         if (!userExists)
             return new HttpException('User not found', HttpStatus.NOT_FOUND);
 
