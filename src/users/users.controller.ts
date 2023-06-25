@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateProfileDto } from './dto/create-profile.dto';
 
 @Controller('users')
 export class UsersController {
@@ -10,6 +11,11 @@ export class UsersController {
     @Post()
     createUser(@Body() newUser: CreateUserDto) {
         return this.userService.createUser(newUser);
+    }
+
+    @Post('profile/:id')
+    createProfile(@Param('id', ParseIntPipe) id: number, @Body() profile: CreateProfileDto) {
+        return this.userService.createProfile(id, profile);
     }
 
     @Get()
